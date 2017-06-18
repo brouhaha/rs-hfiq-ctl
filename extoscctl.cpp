@@ -8,6 +8,9 @@ ExtOscCtl::ExtOscCtl() : QGroupBox(tr("EXT Oscillator Control"))
   ext_freq_label = new QLabel(tr("EXT Frequency (Hz)"));
   vbox1->addWidget(ext_freq_label);
   ext_freq = new QSpinBox();
+  ext_freq->setRange(3000000, 29999999);
+  ext_freq->setValue(3000000);
+  ext_freq->setGroupSeparatorShown(true);
   vbox1->addWidget(ext_freq);
   hbox->addLayout(vbox1);
   

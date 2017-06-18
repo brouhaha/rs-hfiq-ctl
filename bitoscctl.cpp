@@ -17,6 +17,9 @@ BitOscCtl::BitOscCtl() : QGroupBox(tr("BIT Oscillator Control"))
   bit_freq_label = new QLabel(tr("BIT Frequency (Hz)"));
   vbox2->addWidget(bit_freq_label);
   bit_freq = new QSpinBox();
+  bit_freq->setRange(3000000, 29999999);
+  bit_freq->setValue(3000000);
+  bit_freq->setGroupSeparatorShown(true);
   vbox2->addWidget(bit_freq);
   hbox->addLayout(vbox2);
 
