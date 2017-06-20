@@ -9,6 +9,7 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QSpinBox>
+#include <QCheckBox>
 
 #include "radiointerface.h"
 
@@ -26,7 +27,6 @@ private:
     QHBoxLayout *hbox;
     QVBoxLayout *vbox1;
     QVBoxLayout *vbox2;
-    QVBoxLayout *vbox3;
 
     // in vbox1
     QPushButton *set_lo_plus_1khz;
@@ -37,9 +37,7 @@ private:
     QLabel *bit_freq_label;
     QSpinBox *bit_freq;
 
-    // in vbox3
-    QPushButton *bit_on;
-    QPushButton *bit_off;
+    QCheckBox *bit_enable;
 };
 
 #endif // BIT_OSC_CTL_H

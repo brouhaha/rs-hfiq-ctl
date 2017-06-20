@@ -25,12 +25,8 @@ BitOscCtl::BitOscCtl(RadioInterface *radio_interface) : QGroupBox(tr("BIT Oscill
   vbox2->addWidget(bit_freq);
   hbox->addLayout(vbox2);
 
-  vbox3 = new QVBoxLayout;
-  bit_on = new QPushButton(tr("BIT ON"));
-  vbox3->addWidget(bit_on);
-  bit_off = new QPushButton(tr("BIT OFF"));
-  vbox3->addWidget(bit_off);
-  hbox->addLayout(vbox3);
+  bit_enable = new QCheckBox(tr("BIT Enable"));
+  hbox->addWidget(bit_enable);
 
   setLayout(hbox);
 }
@@ -42,11 +38,9 @@ BitOscCtl::~BitOscCtl()
   delete set_lo_minus_1khz;
   delete bit_freq_label;
   delete bit_freq;
-  delete bit_on;
-  delete bit_off;
+  delete bit_enable;
 
   delete vbox1;
   delete vbox2;
-  delete vbox3;
   delete hbox;
 }

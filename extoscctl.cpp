@@ -16,10 +16,8 @@ ExtOscCtl::ExtOscCtl(RadioInterface *radio_interface) : QGroupBox(tr("EXT Oscill
   vbox1->addWidget(ext_freq);
   hbox->addLayout(vbox1);
   
-  ext_on = new QPushButton(tr("EXT ON"));
-  hbox->addWidget(ext_on);
-  ext_off = new QPushButton(tr("EXT OFF"));
-  hbox->addWidget(ext_off);
+  ext_enable = new QCheckBox(tr("EXT Enable"));
+  hbox->addWidget(ext_enable);
 
   setLayout(hbox);
 }
@@ -28,8 +26,7 @@ ExtOscCtl::~ExtOscCtl()
 {
   delete ext_freq_label;
   delete ext_freq;
-  delete ext_on;
-  delete ext_off;
+  delete ext_enable;
 
   delete vbox1;
   delete hbox;

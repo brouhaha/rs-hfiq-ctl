@@ -6,7 +6,7 @@
 #include <QGroupBox>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
-#include <QPushButton>
+#include <QCheckBox>
 #include <QLabel>
 #include <QSpinBox>
 
@@ -30,8 +30,7 @@ private:
     QLabel *ext_freq_label;
     QSpinBox *ext_freq;
 
-    QPushButton *ext_on;
-    QPushButton *ext_off;
+    QCheckBox *ext_enable;
 };
 
 #endif // EXT_OSC_CTL_H
