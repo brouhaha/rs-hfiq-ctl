@@ -10,15 +10,19 @@
 #include <QLabel>
 #include <QSpinBox>
 
+#include "radiointerface.h"
+
 class ExtOscCtl: public QGroupBox
 {
     Q_OBJECT
 
 public:
-    ExtOscCtl();
+    ExtOscCtl(RadioInterface *radio_interface);
     ~ExtOscCtl();
 
 private:
+    RadioInterface *radio_interface;
+
     QHBoxLayout *hbox;
     QVBoxLayout *vbox1;
 

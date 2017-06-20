@@ -1,7 +1,9 @@
 #include "extoscctl.h"
 
-ExtOscCtl::ExtOscCtl() : QGroupBox(tr("EXT Oscillator Control"))
+ExtOscCtl::ExtOscCtl(RadioInterface *radio_interface) : QGroupBox(tr("EXT Oscillator Control"))
 {
+  this->radio_interface = radio_interface;
+
   hbox = new QHBoxLayout;
 
   vbox1 = new QVBoxLayout;

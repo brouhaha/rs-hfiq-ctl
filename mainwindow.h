@@ -7,6 +7,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 
+#include "radiointerface.h"
 #include "bitoscctl.h"
 #include "extoscctl.h"
 
@@ -15,13 +16,15 @@ class MainWindow: public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow();
+    MainWindow(RadioInterface *radio_interface);
     ~MainWindow();
 
 private slots:
     void about();
 
 private:
+    RadioInterface *radio_interface;
+
     void createActions();
     void createMenus();
 

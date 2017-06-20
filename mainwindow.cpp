@@ -8,8 +8,10 @@
 
 #include "mainwindow.h"
 
-MainWindow::MainWindow()
+MainWindow::MainWindow(RadioInterface *radio_interface)
 {
+  this->radio_interface = radio_interface;
+
   QWidget *central = new QWidget(this);
 
   vbox = new QVBoxLayout;
@@ -26,10 +28,10 @@ MainWindow::MainWindow()
 
   vbox->addLayout(hbox1);
 
-  bit_osc_ctl = new BitOscCtl();
+  bit_osc_ctl = new BitOscCtl(this->radio_interface);
   vbox->addWidget(bit_osc_ctl);
 
-  ext_osc_ctl = new ExtOscCtl();
+  ext_osc_ctl = new ExtOscCtl(this->radio_interface);
   vbox->addWidget(ext_osc_ctl);
 
   hbox2 = new QHBoxLayout;

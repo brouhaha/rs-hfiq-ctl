@@ -7,7 +7,7 @@
 #include <QLabel>
 
 #include "mainwindow.h"
-#include "serialportchooser.h"
+#include "radiointerface.h"
 
 int main(int argc, char *argv[])
 {
@@ -36,10 +36,6 @@ int main(int argc, char *argv[])
 
     if (com_port.isEmpty())
       {
-	SerialPortChooser sps;
-	if (sps.exec() != QDialog::Accepted)
-	  return 2;
-	com_port = sps.get_selection();
       }
 
     try
@@ -53,7 +49,9 @@ int main(int argc, char *argv[])
         return app.exec();
     }
 
-    MainWindow mainWin;
+    RadioInterface *radio_interface = new RadioInterface();
+
+    MainWindow mainWin(radio_interface);
     mainWin.show();
 
     return app.exec();

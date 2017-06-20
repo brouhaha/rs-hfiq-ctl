@@ -1,7 +1,9 @@
 #include "bitoscctl.h"
 
-BitOscCtl::BitOscCtl() : QGroupBox(tr("BIT Oscillator Control"))
+BitOscCtl::BitOscCtl(RadioInterface *radio_interface) : QGroupBox(tr("BIT Oscillator Control"))
 {
+  this->radio_interface = radio_interface;
+
   hbox = new QHBoxLayout;
 
   vbox1 = new QVBoxLayout;
