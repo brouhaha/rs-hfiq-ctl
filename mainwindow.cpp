@@ -18,12 +18,7 @@ MainWindow::MainWindow(RadioInterface *radio_interface)
 
   hbox1 = new QHBoxLayout;
 
-  QGroupBox *status_box = new QGroupBox(tr("Status"));
-  QVBoxLayout *status_layout = new QVBoxLayout;
-  QPushButton *status_button = new QPushButton(tr("Stat"));
-  status_layout->addWidget(status_button);
-  status_box->setLayout(status_layout);
-
+  status_box = new StatusBox(this->radio_interface);
   hbox1->addWidget(status_box);
 
   vbox->addLayout(hbox1);
@@ -63,8 +58,10 @@ MainWindow::MainWindow(RadioInterface *radio_interface)
 
 MainWindow::~MainWindow()
 {
+  delete status_box;
   delete bit_osc_ctl;
   delete ext_osc_ctl;
+
   delete hbox1;
   delete hbox2;
   delete vbox;

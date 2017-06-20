@@ -8,6 +8,8 @@
 #include <QVBoxLayout>
 
 #include "radiointerface.h"
+
+#include "statusbox.h"
 #include "bitoscctl.h"
 #include "extoscctl.h"
 
@@ -36,6 +38,8 @@ private:
     QVBoxLayout *vbox;
     QHBoxLayout *hbox1;
     QHBoxLayout *hbox2;
+
+    StatusBox *status_box;
     BitOscCtl *bit_osc_ctl;
     ExtOscCtl *ext_osc_ctl;
 };
