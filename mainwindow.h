@@ -10,6 +10,7 @@
 #include "radiointerface.h"
 
 #include "statusbox.h"
+#include "vfooscctl.h"
 #include "bitoscctl.h"
 #include "extoscctl.h"
 
@@ -40,6 +41,7 @@ private:
     QHBoxLayout *hbox2;
 
     StatusBox *status_box;
+    VFOOscCtl *vfo_osc_ctl;
     BitOscCtl *bit_osc_ctl;
     ExtOscCtl *ext_osc_ctl;
 };

@@ -23,6 +23,9 @@ MainWindow::MainWindow(RadioInterface *radio_interface)
 
   vbox->addLayout(hbox1);
 
+  vfo_osc_ctl = new VFOOscCtl(this->radio_interface);
+  vbox->addWidget(vfo_osc_ctl);
+
   bit_osc_ctl = new BitOscCtl(this->radio_interface);
   vbox->addWidget(bit_osc_ctl);
 

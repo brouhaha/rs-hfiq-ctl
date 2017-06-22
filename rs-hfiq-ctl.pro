@@ -10,6 +10,8 @@ SOURCES += main.cpp \
     serialportchooser.cpp \
     mainwindow.cpp \
     statusbox.cpp \
+    oscctl.cpp \
+    vfooscctl.cpp \
     bitoscctl.cpp \
     extoscctl.cpp
 
@@ -18,5 +20,7 @@ HEADERS += \
     radiointerface.h \
     serialportchooser.h \
     statusbox.h \
+    oscctl.h \
+    vfooscctl.h \
     bitoscctl.h \
     extoscctl.h
