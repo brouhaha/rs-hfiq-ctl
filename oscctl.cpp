@@ -5,7 +5,6 @@
 OscCtl::OscCtl(std::string name,
 	       char cmd_id,
 	       RadioInterface *radio_interface,
-	       uint32_t freq_mult,
 	       uint32_t min_freq,
 	       uint32_t max_freq) :
   QGroupBox(QString::fromStdString(name + std::string(" Oscillator Control")))
@@ -14,7 +13,6 @@ OscCtl::OscCtl(std::string name,
   this->cmd_id = cmd_id;
   this->min_freq = min_freq;
   this->max_freq = max_freq;
-  this->freq_mult = freq_mult;
 
   vbox = new QVBoxLayout;
 

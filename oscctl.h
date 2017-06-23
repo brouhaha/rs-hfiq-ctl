@@ -22,7 +22,6 @@ public:
     OscCtl(std::string name,
 	   char cmd_id,
 	   RadioInterface *radio_interface,
-	   uint32_t freq_mult = 1,
 	   uint32_t min_freq = 1024000,
 	   uint32_t max_freq = 112500000);
     ~OscCtl();
@@ -37,7 +36,6 @@ protected:
     RadioInterface *radio_interface;
     uint32_t min_freq;
     uint32_t max_freq;
-    uint32_t freq_mult;
 
     uint32_t freq;
 
