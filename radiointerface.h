@@ -11,8 +11,13 @@ public:
   RadioInterface();
   ~RadioInterface();
 
+  bool choose(void);
+
+  void send_command_no_reply(std::string cmd);
+  std::string send_command(std::string cmd);
+
 private:
-  SerialPortChooser *serial_port_chooser;
+  QString serial_port_name;
 };
 
 #endif // RADIOINTERFACE_H

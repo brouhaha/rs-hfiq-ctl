@@ -50,6 +50,8 @@ int main(int argc, char *argv[])
     }
 
     RadioInterface *radio_interface = new RadioInterface();
+    if (! radio_interface->choose())
+      return 1; // XXX need better return value?
 
     MainWindow mainWin(radio_interface);
     mainWin.show();
