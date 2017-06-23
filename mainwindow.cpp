@@ -4,7 +4,6 @@
 #include <QMessageBox>
 #include <QMenuBar>
 #include <QPushButton>
-#include <QTextEdit>
 
 #include "mainwindow.h"
 
@@ -16,12 +15,8 @@ MainWindow::MainWindow(RadioInterface *radio_interface)
 
   vbox = new QVBoxLayout;
 
-  hbox1 = new QHBoxLayout;
-
   status_box = new StatusBox(this->radio_interface);
-  hbox1->addWidget(status_box);
-
-  vbox->addLayout(hbox1);
+  vbox->addWidget(status_box);
 
   vfo_osc_ctl = new VFOOscCtl(this->radio_interface);
   vbox->addWidget(vfo_osc_ctl);
@@ -32,15 +27,8 @@ MainWindow::MainWindow(RadioInterface *radio_interface)
   ext_osc_ctl = new ExtOscCtl(this->radio_interface);
   vbox->addWidget(ext_osc_ctl);
 
-  hbox2 = new QHBoxLayout;
-  
-  QGroupBox *act_temp_comp_box = new QGroupBox(tr("Active Temperature Compensation"));
-  QVBoxLayout *act_temp_comp_layout = new QVBoxLayout;
-  QPushButton *act_temp_comp_button = new QPushButton(tr("Act Temp Comp"));
-  act_temp_comp_layout->addWidget(act_temp_comp_button);
-  act_temp_comp_box->setLayout(act_temp_comp_layout);
-
-  hbox2->addWidget(act_temp_comp_box);
+  temp_ctl = new TempCtl(this->radio_interface);
+  vbox->addWidget(temp_ctl);
 
   QGroupBox *fixed_freq_offset_box = new QGroupBox(tr("Fixed Frequency Offset"));
   QVBoxLayout *fixed_freq_offset_layout = new QVBoxLayout;
@@ -48,9 +36,7 @@ MainWindow::MainWindow(RadioInterface *radio_interface)
   fixed_freq_offset_layout->addWidget(fixed_freq_offset_button);
   fixed_freq_offset_box->setLayout(fixed_freq_offset_layout);
 
-  hbox2->addWidget(fixed_freq_offset_box);
-
-  vbox->addLayout(hbox2);
+  vbox->addWidget(fixed_freq_offset_box);
 
   central->setLayout(vbox);
   setCentralWidget(central);
@@ -65,8 +51,6 @@ MainWindow::~MainWindow()
   delete bit_osc_ctl;
   delete ext_osc_ctl;
 
-  delete hbox1;
-  delete hbox2;
   delete vbox;
 }
 

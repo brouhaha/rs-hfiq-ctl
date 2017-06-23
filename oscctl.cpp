@@ -3,14 +3,20 @@
 #include <QString>
 
 OscCtl::OscCtl(std::string name,
+	       char cmd_id,
 	       RadioInterface *radio_interface,
+	       uint32_t freq_mult,
 	       uint32_t min_freq,
 	       uint32_t max_freq) :
   QGroupBox(QString::fromStdString(name + std::string(" Oscillator Control")))
 {
   this->radio_interface = radio_interface;
+  this->cmd_id = cmd_id;
   this->min_freq = min_freq;
   this->max_freq = max_freq;
+  this->freq_mult = freq_mult;
+
+  this->freq = min_freq;  // subclass should read current value from radio
 
   vbox = new QVBoxLayout;
 
@@ -25,6 +31,7 @@ OscCtl::OscCtl(std::string name,
   freq_spinbox->setValue(min_freq);
   freq_spinbox->setGroupSeparatorShown(true);
   hbox1->addWidget(freq_spinbox);
+  hbox1->addStretch();
   vbox->addLayout(hbox1);
 
   setLayout(vbox);
@@ -38,4 +45,9 @@ OscCtl::~OscCtl()
 
   delete hbox1;
   delete vbox;
+}
+
+uint32_t OscCtl::get_freq()
+{
+  return this->freq;
 }

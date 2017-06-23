@@ -20,15 +20,23 @@ class OscCtl: public QGroupBox
 
 public:
     OscCtl(std::string name,
+	   char cmd_id,
 	   RadioInterface *radio_interface,
-	   uint32_t min_freq = 3000000,
-	   uint32_t max_freq = 29999999);
+	   uint32_t freq_mult = 1,
+	   uint32_t min_freq = 1024000,
+	   uint32_t max_freq = 112500000);
     ~OscCtl();
 
+    uint32_t get_freq(void);
+
 protected:
+    char cmd_id;
     RadioInterface *radio_interface;
     uint32_t min_freq;
     uint32_t max_freq;
+    uint32_t freq_mult;
+
+    uint32_t freq;
 
     QVBoxLayout *vbox;
     QHBoxLayout *hbox1;

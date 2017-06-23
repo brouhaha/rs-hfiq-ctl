@@ -13,7 +13,8 @@ SOURCES += main.cpp \
     oscctl.cpp \
     vfooscctl.cpp \
     bitoscctl.cpp \
-    extoscctl.cpp
+    extoscctl.cpp \
+    tempctl.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -23,4 +24,5 @@ HEADERS += \
     oscctl.h \
     vfooscctl.h \
     bitoscctl.h \
-    extoscctl.h
+    extoscctl.h \
+    tempctl.h

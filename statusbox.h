@@ -25,8 +25,6 @@ private:
 
     QLabel *status_label;
     QLineEdit *status_text;
-    QLabel *temp_label;
-    QLineEdit *temp_text;
 };
 
 #endif // STATUS_BOX_H

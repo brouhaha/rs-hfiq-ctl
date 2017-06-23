@@ -14,6 +14,8 @@
 #include "bitoscctl.h"
 #include "extoscctl.h"
 
+#include "tempctl.h"
+
 class MainWindow: public QMainWindow
 {
     Q_OBJECT
@@ -37,13 +39,13 @@ private:
     QAction *aboutAct;
 
     QVBoxLayout *vbox;
-    QHBoxLayout *hbox1;
-    QHBoxLayout *hbox2;
 
     StatusBox *status_box;
     VFOOscCtl *vfo_osc_ctl;
     BitOscCtl *bit_osc_ctl;
     ExtOscCtl *ext_osc_ctl;
+
+    TempCtl *temp_ctl;
 };
 
 #endif // MAINWINDOW_H

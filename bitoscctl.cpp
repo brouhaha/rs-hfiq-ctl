@@ -1,7 +1,8 @@
 #include "bitoscctl.h"
 
 BitOscCtl::BitOscCtl(RadioInterface *radio_interface) :
-  OscCtl(std::string("BIT"), radio_interface)
+  OscCtl(std::string("BIT"), 'B', radio_interface,
+	 1, 1024000, 112500000)
 {
   set_label = new QLabel(tr("Set to"));
   vbox->addWidget(set_label);
