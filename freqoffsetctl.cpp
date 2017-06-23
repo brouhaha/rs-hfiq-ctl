@@ -7,15 +7,16 @@ FreqOffsetCtl::FreqOffsetCtl(RadioInterface *radio_interface) :
 
   refresh_in_progress = false;
   
-  vbox = new QVBoxLayout;
+  hbox = new QHBoxLayout;
   freq_offset_label = new QLabel(tr("Offset"));
-  vbox->addWidget(freq_offset_label);
+  hbox->addWidget(freq_offset_label);
   freq_offset_text = new QLineEdit();
   freq_offset_text->setPlaceholderText("0");
   freq_offset_text->setReadOnly(true);
-  vbox->addWidget(freq_offset_text);
+  hbox->addWidget(freq_offset_text);
+  hbox->addStretch();
 
-  setLayout(vbox);
+  setLayout(hbox);
 
   refresh();
 }
@@ -25,7 +26,7 @@ FreqOffsetCtl::~FreqOffsetCtl()
   delete freq_offset_label;
   delete freq_offset_text;
 
-  delete vbox;
+  delete hbox;
 }
 
 void FreqOffsetCtl::refresh()

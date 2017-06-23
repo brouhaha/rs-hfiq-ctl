@@ -6,7 +6,7 @@
 #include <cstdint>
 
 #include <QGroupBox>
-#include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
 
@@ -29,7 +29,7 @@ public:
 
     uint32_t freq_offset;
 
-    QVBoxLayout *vbox;
+    QHBoxLayout *hbox;
 
     QLabel *freq_offset_label;
     QLineEdit *freq_offset_text;
