@@ -14,7 +14,8 @@ SOURCES += main.cpp \
     vfooscctl.cpp \
     bitoscctl.cpp \
     extoscctl.cpp \
-    tempctl.cpp
+    tempctl.cpp \
+    freqoffsetctl.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -25,4 +26,6 @@ HEADERS += \
     vfooscctl.h \
     bitoscctl.h \
     extoscctl.h \
-    tempctl.h
+    tempctl.h \
+    freqoffsetctl.h
+

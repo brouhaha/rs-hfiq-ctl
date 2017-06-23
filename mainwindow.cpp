@@ -30,13 +30,8 @@ MainWindow::MainWindow(RadioInterface *radio_interface)
   temp_ctl = new TempCtl(this->radio_interface);
   vbox->addWidget(temp_ctl);
 
-  QGroupBox *fixed_freq_offset_box = new QGroupBox(tr("Fixed Frequency Offset"));
-  QVBoxLayout *fixed_freq_offset_layout = new QVBoxLayout;
-  QPushButton *fixed_freq_offset_button = new QPushButton(tr("Fixed Freq Offset"));
-  fixed_freq_offset_layout->addWidget(fixed_freq_offset_button);
-  fixed_freq_offset_box->setLayout(fixed_freq_offset_layout);
-
-  vbox->addWidget(fixed_freq_offset_box);
+  freq_offset_ctl = new FreqOffsetCtl(this->radio_interface);
+  vbox->addWidget(freq_offset_ctl);
 
   central->setLayout(vbox);
   setCentralWidget(central);

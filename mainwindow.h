@@ -16,6 +16,8 @@
 
 #include "tempctl.h"
 
+#include "freqoffsetctl.h"
+
 class MainWindow: public QMainWindow
 {
     Q_OBJECT
@@ -41,11 +43,14 @@ private:
     QVBoxLayout *vbox;
 
     StatusBox *status_box;
+
     VFOOscCtl *vfo_osc_ctl;
     BitOscCtl *bit_osc_ctl;
     ExtOscCtl *ext_osc_ctl;
 
     TempCtl *temp_ctl;
+
+    FreqOffsetCtl *freq_offset_ctl;
 };
 
 #endif // MAINWINDOW_H
