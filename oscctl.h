@@ -27,7 +27,10 @@ public:
 	   uint32_t max_freq = 112500000);
     ~OscCtl();
 
-    uint32_t get_freq(void);
+    void refresh(void);
+    void refresh_frequency(void);
+
+    uint32_t get_frequency(void);
 
 protected:
     char cmd_id;
@@ -41,11 +44,18 @@ protected:
     QVBoxLayout *vbox;
     QHBoxLayout *hbox1;
 
+private:
+    bool refresh_in_progress;
+
     QCheckBox *osc_enable;
 
     // in hbox
     QLabel *freq_label;
     QSpinBox *freq_spinbox;
+
+private slots:
+    void enable_state_changed(int state);
+    void frequency_value_changed(int value);
 };
 
 #endif // OSC_CTL_H

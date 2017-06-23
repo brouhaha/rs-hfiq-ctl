@@ -16,11 +16,11 @@ OscCtl::OscCtl(std::string name,
   this->max_freq = max_freq;
   this->freq_mult = freq_mult;
 
-  this->freq = min_freq;  // subclass should read current value from radio
-
   vbox = new QVBoxLayout;
 
   osc_enable = new QCheckBox(tr("Enable"));
+  QObject::connect(osc_enable, & QCheckBox::stateChanged,
+		   this, & OscCtl::enable_state_changed);
   vbox->addWidget(osc_enable);
 
   hbox1 = new QHBoxLayout;
@@ -30,11 +30,17 @@ OscCtl::OscCtl(std::string name,
   freq_spinbox->setRange(min_freq, max_freq);
   freq_spinbox->setValue(min_freq);
   freq_spinbox->setGroupSeparatorShown(true);
+  QObject::connect(freq_spinbox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),
+  		   this, & OscCtl::frequency_value_changed);
   hbox1->addWidget(freq_spinbox);
   hbox1->addStretch();
   vbox->addLayout(hbox1);
 
   setLayout(vbox);
+
+  refresh_in_progress = false;
+
+  refresh();
 }
 
 OscCtl::~OscCtl()
@@ -47,7 +53,39 @@ OscCtl::~OscCtl()
   delete vbox;
 }
 
-uint32_t OscCtl::get_freq()
+uint32_t OscCtl::get_frequency()
 {
   return this->freq;
+}
+
+void OscCtl::refresh_frequency(void)
+{
+  refresh_in_progress = true;
+  std::string cmd = std::string("*") + this->cmd_id + "?";
+  this->freq = std::stoi(radio_interface->send_command(cmd));
+  freq_spinbox->setValue(this->freq);
+  refresh_in_progress = false;
+}
+
+void OscCtl::refresh(void)
+{
+  refresh_frequency();
+}
+
+void OscCtl::enable_state_changed(int state)
+{
+  if (! refresh_in_progress)
+    {
+      std::string cmd = std::string("*O") + this->cmd_id + (state ? "2" : "0");
+      radio_interface->send_command_no_reply(cmd);
+    }
+}
+
+void OscCtl::frequency_value_changed(int value)
+{
+  if (! refresh_in_progress)
+    {
+      std::string cmd = std::string("*") + this->cmd_id + std::to_string(value);
+      radio_interface->send_command_no_reply(cmd);
+    }
 }
