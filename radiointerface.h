@@ -3,7 +3,13 @@
 #ifndef RADIOINTERFACE_H
 #define RADIOINTERFACE_H
 
+#include <exception>
+
+#include <QtSerialPort/QSerialPort>
+
 #include "serialportchooser.h"
+
+struct CommException: public std::exception {};
 
 class RadioInterface
 {
@@ -17,7 +23,9 @@ public:
   std::string send_command(std::string cmd);
 
 private:
-  QString serial_port_name;
+  int write_timeout;
+  int read_timeout;
+  QSerialPort *serial;
 };
 
 #endif // RADIOINTERFACE_H
