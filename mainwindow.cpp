@@ -33,6 +33,8 @@ MainWindow::MainWindow(RadioInterface *radio_interface)
   freq_offset_ctl = new FreqOffsetCtl(this->radio_interface);
   vbox->addWidget(freq_offset_ctl);
 
+  vbox->addStretch();
+
   central->setLayout(vbox);
   setCentralWidget(central);
 
