@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef STATUS_BOX_H
-#define STATUS_BOX_H
+#ifndef FIRMWARE_CTL_H
+#define FIRMWARE_CTL_H
 
 #include <QWidget>
 #include <QHBoxLayout>
@@ -23,13 +23,13 @@
 
 #include "radiointerface.h"
 
-class StatusBox: public QWidget
+class FirmwareCtl: public QWidget
 {
     Q_OBJECT
 
 public:
-    StatusBox(RadioInterface *radio_interface);
-    ~StatusBox();
+    FirmwareCtl(RadioInterface *radio_interface);
+    ~FirmwareCtl();
 
     void refresh(void);
 
@@ -44,4 +44,4 @@ private:
     QLineEdit *firmware_text;
 };
 
-#endif // STATUS_BOX_H
+#endif // FIRMWARE_CTL_H

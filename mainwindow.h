@@ -22,7 +22,8 @@
 
 #include "radiointerface.h"
 
-#include "statusbox.h"
+#include "firmwarectl.h"
+
 #include "vfooscctl.h"
 #include "bitoscctl.h"
 #include "extoscctl.h"
@@ -55,15 +56,12 @@ private:
 
     QVBoxLayout *vbox;
 
-    StatusBox *status_box;
-
     VFOOscCtl *vfo_osc_ctl;
     BitOscCtl *bit_osc_ctl;
     ExtOscCtl *ext_osc_ctl;
-
-    TempCtl *temp_ctl;
-
     FreqOffsetCtl *freq_offset_ctl;
+    TempCtl *temp_ctl;
+    FirmwareCtl *firmware_ctl;
 };
 
 #endif // MAINWINDOW_H

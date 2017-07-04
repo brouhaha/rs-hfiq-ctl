@@ -13,9 +13,9 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "statusbox.h"
+#include "firmwarectl.h"
 
-StatusBox::StatusBox(RadioInterface *radio_interface) : QWidget()
+FirmwareCtl::FirmwareCtl(RadioInterface *radio_interface) : QWidget()
 {
   this->radio_interface = radio_interface;
   refresh_in_progress = false;
@@ -35,7 +35,7 @@ StatusBox::StatusBox(RadioInterface *radio_interface) : QWidget()
   refresh();
 }
 
-StatusBox::~StatusBox()
+FirmwareCtl::~FirmwareCtl()
 {
   delete firmware_label;
   delete firmware_text;
@@ -43,7 +43,7 @@ StatusBox::~StatusBox()
   delete hbox;
 }
 
-void StatusBox::refresh(void)
+void FirmwareCtl::refresh(void)
 {
   refresh_in_progress = true;
   firmware_text->setText(QString::fromStdString(radio_interface->send_command("*W")));

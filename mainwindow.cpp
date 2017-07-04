@@ -28,9 +28,6 @@ MainWindow::MainWindow(RadioInterface *radio_interface)
 
   vbox = new QVBoxLayout;
 
-  status_box = new StatusBox(this->radio_interface);
-  vbox->addWidget(status_box);
-
   vfo_osc_ctl = new VFOOscCtl(this->radio_interface);
   vbox->addWidget(vfo_osc_ctl);
 
@@ -46,6 +43,9 @@ MainWindow::MainWindow(RadioInterface *radio_interface)
   freq_offset_ctl = new FreqOffsetCtl(this->radio_interface);
   vbox->addWidget(freq_offset_ctl);
 
+  firmware_ctl = new FirmwareCtl(this->radio_interface);
+  vbox->addWidget(firmware_ctl);
+
   vbox->addStretch();
 
   central->setLayout(vbox);
@@ -57,9 +57,12 @@ MainWindow::MainWindow(RadioInterface *radio_interface)
 
 MainWindow::~MainWindow()
 {
-  delete status_box;
+  delete vfo_osc_ctl;
   delete bit_osc_ctl;
   delete ext_osc_ctl;
+  delete freq_offset_ctl;
+  delete temp_ctl;
+  delete firmware_ctl;
 
   delete vbox;
 }

@@ -9,7 +9,7 @@ SOURCES += main.cpp \
     radiointerface.cpp \
     serialportchooser.cpp \
     mainwindow.cpp \
-    statusbox.cpp \
+    firmwarectl.cpp \
     oscctl.cpp \
     vfooscctl.cpp \
     bitoscctl.cpp \
@@ -21,7 +21,7 @@ HEADERS += \
     mainwindow.h \
     radiointerface.h \
     serialportchooser.h \
-    statusbox.h \
+    firmwarectl.h \
     oscctl.h \
     vfooscctl.h \
     bitoscctl.h \
