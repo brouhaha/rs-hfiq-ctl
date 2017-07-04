@@ -22,7 +22,7 @@ OscCtl::OscCtl(std::string name,
 	       RadioInterface *radio_interface,
 	       uint32_t min_freq,
 	       uint32_t max_freq) :
-  QGroupBox(QString::fromStdString(name + std::string(" Oscillator Control")))
+  QGroupBox(QString::fromStdString(name + std::string(" Oscillator")))
 {
   this->radio_interface = radio_interface;
   this->cmd_id = cmd_id;
