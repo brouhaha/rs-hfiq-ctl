@@ -15,20 +15,30 @@
 
 #include "bitoscctl.h"
 
-BitOscCtl::BitOscCtl(RadioInterface *radio_interface) :
+BitOscCtl::BitOscCtl(RadioInterface *radio_interface, OscCtl *vfo_osc_ctl) :
   OscCtl(std::string("BIT"), 'B', radio_interface)
 {
+  this->vfo_osc_ctl = vfo_osc_ctl;
+
   set_label = new QLabel(tr("Set to"));
   vbox->addWidget(set_label);
   
   hbox2 = new QHBoxLayout;
 
-  set_lo_plus_1khz  = new QPushButton(tr("LO Freq + 1kHz"));
-  hbox2->addWidget(set_lo_plus_1khz);
-  set_lo            = new QPushButton(tr("LO Freq"));
-  hbox2->addWidget(set_lo);
-  set_lo_minus_1khz = new QPushButton(tr("LO Freq - 1kHz"));
-  hbox2->addWidget(set_lo_minus_1khz);
+  btn_set_lo_minus_1khz = new QPushButton(tr("LO Freq - 1kHz"));
+  QObject::connect(btn_set_lo_minus_1khz, &QPushButton::clicked,
+		   this, & BitOscCtl::set_lo_minus_1khz);
+  hbox2->addWidget(btn_set_lo_minus_1khz);
+
+  btn_set_lo            = new QPushButton(tr("LO Freq"));
+  QObject::connect(btn_set_lo, &QPushButton::clicked,
+		   this, & BitOscCtl::set_lo);
+  hbox2->addWidget(btn_set_lo);
+
+  btn_set_lo_plus_1khz  = new QPushButton(tr("LO Freq + 1kHz"));
+  QObject::connect(btn_set_lo_plus_1khz, &QPushButton::clicked,
+		   this, & BitOscCtl::set_lo_plus_1khz);
+  hbox2->addWidget(btn_set_lo_plus_1khz);
 
   vbox->addLayout(hbox2);
 }
@@ -36,9 +46,28 @@ BitOscCtl::BitOscCtl(RadioInterface *radio_interface) :
 BitOscCtl::~BitOscCtl()
 {
   delete set_label;
-  delete set_lo_plus_1khz;
-  delete set_lo;
-  delete set_lo_minus_1khz;
+  delete btn_set_lo_minus_1khz;
+  delete btn_set_lo;
+  delete btn_set_lo_plus_1khz;
 
   delete hbox2;
 }
+
+void BitOscCtl::set_lo_minus_1khz()
+{
+  uint32_t lo = vfo_osc_ctl->get_frequency();
+  set_frequency(lo - 1000);
+}
+
+void BitOscCtl::set_lo()
+{
+  uint32_t lo = vfo_osc_ctl->get_frequency();
+  set_frequency(lo);
+}
+
+void BitOscCtl::set_lo_plus_1khz()
+{
+  uint32_t lo = vfo_osc_ctl->get_frequency();
+  set_frequency(lo + 1000);
+}
+

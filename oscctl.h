@@ -43,6 +43,7 @@ public:
     void refresh_frequency(void);
 
     uint32_t get_frequency(void);
+    void set_frequency(uint32_t frequency);
 
 protected:
     char cmd_id;

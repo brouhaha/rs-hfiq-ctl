@@ -25,16 +25,23 @@ class BitOscCtl: public OscCtl
     Q_OBJECT
 
 public:
-    BitOscCtl(RadioInterface *radio_interface);
+    BitOscCtl(RadioInterface *radio_interface, OscCtl *vfo_osc_ctl);
     ~BitOscCtl();
 
 private:
+    OscCtl *vfo_osc_ctl;
+
     QLabel *set_label;
     QHBoxLayout *hbox2;
 
-    QPushButton *set_lo_plus_1khz;
-    QPushButton *set_lo;
-    QPushButton *set_lo_minus_1khz;
+    QPushButton *btn_set_lo_minus_1khz;
+    QPushButton *btn_set_lo;
+    QPushButton *btn_set_lo_plus_1khz;
+
+private slots:
+    void set_lo_minus_1khz();
+    void set_lo();
+    void set_lo_plus_1khz();
 };
 
 #endif // BIT_OSC_CTL_H

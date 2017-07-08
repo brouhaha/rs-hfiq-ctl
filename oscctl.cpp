@@ -68,15 +68,23 @@ OscCtl::~OscCtl()
 
 uint32_t OscCtl::get_frequency()
 {
-  return this->freq;
+  return freq;
+}
+
+void OscCtl::set_frequency(uint32_t frequency)
+{
+  freq = frequency;
+  std::string cmd = std::string("*") + this->cmd_id + std::to_string(freq);
+  radio_interface->send_command_no_reply(cmd);
+  freq_spinbox->setValue(this->freq);
 }
 
 void OscCtl::refresh_frequency(void)
 {
   refresh_in_progress = true;
   std::string cmd = std::string("*") + this->cmd_id + "?";
-  this->freq = std::stoi(radio_interface->send_command(cmd));
-  freq_spinbox->setValue(this->freq);
+  freq = std::stoi(radio_interface->send_command(cmd));
+  freq_spinbox->setValue(freq);
   refresh_in_progress = false;
 }
 
@@ -98,7 +106,6 @@ void OscCtl::frequency_value_changed(int value)
 {
   if (! refresh_in_progress)
     {
-      std::string cmd = std::string("*") + this->cmd_id + std::to_string(value);
-      radio_interface->send_command_no_reply(cmd);
+      set_frequency(value);
     }
 }
