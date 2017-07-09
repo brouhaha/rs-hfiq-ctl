@@ -39,10 +39,10 @@ public:
 	   uint32_t max_freq = 112500000);
     ~OscCtl();
 
-    void refresh(void);
-    void refresh_frequency(void);
+    void refresh();
+    void refresh_frequency();
 
-    uint32_t get_frequency(void);
+    uint32_t get_frequency();
     void set_frequency(uint32_t frequency);
 
 protected:

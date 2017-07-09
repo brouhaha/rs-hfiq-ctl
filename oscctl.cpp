@@ -79,7 +79,7 @@ void OscCtl::set_frequency(uint32_t frequency)
   freq_spinbox->setValue(this->freq);
 }
 
-void OscCtl::refresh_frequency(void)
+void OscCtl::refresh_frequency()
 {
   refresh_in_progress = true;
   std::string cmd = std::string("*") + this->cmd_id + "?";
@@ -88,7 +88,7 @@ void OscCtl::refresh_frequency(void)
   refresh_in_progress = false;
 }
 
-void OscCtl::refresh(void)
+void OscCtl::refresh()
 {
   refresh_frequency();
 }

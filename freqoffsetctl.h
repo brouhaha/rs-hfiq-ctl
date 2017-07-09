@@ -33,7 +33,7 @@ public:
     FreqOffsetCtl(RadioInterface *radio_interface);
     ~FreqOffsetCtl();
     
-    void refresh(void);
+    void refresh();
 
  private:
     RadioInterface *radio_interface;

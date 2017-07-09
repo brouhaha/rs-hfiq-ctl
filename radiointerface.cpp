@@ -32,7 +32,7 @@ RadioInterface::~RadioInterface()
   delete serial;
 }
 
-bool RadioInterface::choose(void)
+bool RadioInterface::choose()
 {
   SerialPortChooser serial_port_chooser;
   if (serial_port_chooser.exec() != QDialog::Accepted)

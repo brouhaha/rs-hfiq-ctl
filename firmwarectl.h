@@ -31,7 +31,7 @@ public:
     FirmwareCtl(RadioInterface *radio_interface);
     ~FirmwareCtl();
 
-    void refresh(void);
+    void refresh();
 
 private:
     RadioInterface *radio_interface;

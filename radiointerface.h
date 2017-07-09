@@ -30,7 +30,7 @@ public:
   RadioInterface();
   ~RadioInterface();
 
-  bool choose(void);
+  bool choose();
 
   void send_command_no_reply(std::string cmd);
   std::string send_command(std::string cmd);

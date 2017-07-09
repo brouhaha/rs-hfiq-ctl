@@ -43,7 +43,7 @@ FirmwareCtl::~FirmwareCtl()
   delete hbox;
 }
 
-void FirmwareCtl::refresh(void)
+void FirmwareCtl::refresh()
 {
   refresh_in_progress = true;
   firmware_text->setText(QString::fromStdString(radio_interface->send_command("*W")));
