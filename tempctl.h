@@ -30,23 +30,40 @@ class TempCtl: public QGroupBox
     Q_OBJECT
 
 public:
-    TempCtl(RadioInterface *radio_interface);
+    TempCtl(RadioInterface *radio_interface, bool has_comp);
     ~TempCtl();
 
-protected:
+    void refresh();
+
+private:
     RadioInterface *radio_interface;
+    bool has_comp;
+
+    bool refresh_in_progress;
+
+    float temp_c;
+    int mode;
 
     QVBoxLayout *vbox;
     QHBoxLayout *hbox1;
     QHBoxLayout *hbox2;
 
-    QLabel *temp_label;
-    QLineEdit *temp_text;
+    QLabel *temp_label_1;
+    QLineEdit *temp_text_c;
+    QLabel *temp_label_2;
+    QLineEdit *temp_text_f;
+    QLabel *temp_label_3;
 
     QLabel *tc_label;
     QRadioButton *tc_disabled;
     QRadioButton *tc_enabled;
     QRadioButton *tc_tcxo;
+
+    void refresh_temp();
+    void refresh_mode();
+
+private slots:
+  void on_tc_toggled(bool checked);
 };
 
 #endif // TEMP_CTL_H

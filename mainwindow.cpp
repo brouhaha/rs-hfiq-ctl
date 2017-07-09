@@ -26,6 +26,9 @@ MainWindow::MainWindow(RadioInterface *radio_interface)
 
   QWidget *central = new QWidget(this);
 
+  // have to get firmware version early
+  firmware_ctl = new FirmwareCtl(this->radio_interface);
+
   vbox = new QVBoxLayout;
 
   vfo_osc_ctl = new VFOOscCtl(this->radio_interface);
@@ -37,13 +40,14 @@ MainWindow::MainWindow(RadioInterface *radio_interface)
   ext_osc_ctl = new ExtOscCtl(this->radio_interface);
   vbox->addWidget(ext_osc_ctl);
 
-  temp_ctl = new TempCtl(this->radio_interface);
+  // XXX check firmware version to determine whether there are
+  // temperature compensation settings.
+  temp_ctl = new TempCtl(this->radio_interface, true);
   vbox->addWidget(temp_ctl);
 
   freq_offset_ctl = new FreqOffsetCtl(this->radio_interface);
   vbox->addWidget(freq_offset_ctl);
 
-  firmware_ctl = new FirmwareCtl(this->radio_interface);
   vbox->addWidget(firmware_ctl);
 
   vbox->addStretch();
