@@ -33,21 +33,14 @@ OscCtl::OscCtl(std::string name,
 
   osc_enable = new QCheckBox(tr("Enable"));
   QObject::connect(osc_enable, & QCheckBox::stateChanged,
-		   this, & OscCtl::enable_state_changed);
+		   this, & OscCtl::on_enable_stateChanged);
   vbox->addWidget(osc_enable);
 
-  hbox1 = new QHBoxLayout;
-  freq_label = new QLabel(tr("Frequency (Hz)"));
-  hbox1->addWidget(freq_label);
-  freq_spinbox = new QSpinBox();
-  freq_spinbox->setRange(min_freq, max_freq);
-  freq_spinbox->setValue(min_freq);
-  freq_spinbox->setGroupSeparatorShown(true);
-  QObject::connect(freq_spinbox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),
-  		   this, & OscCtl::frequency_value_changed);
-  hbox1->addWidget(freq_spinbox);
-  hbox1->addStretch();
-  vbox->addLayout(hbox1);
+  fc = new CFreqCtrl();
+  fc->setup(8, min_freq, max_freq, 1, FCTL_UNIT_HZ);
+  QObject::connect(fc, & CFreqCtrl::newFrequency,
+		   this, & OscCtl::on_newFrequency);
+  vbox->addWidget(fc);
 
   setLayout(vbox);
 
@@ -59,10 +52,8 @@ OscCtl::OscCtl(std::string name,
 OscCtl::~OscCtl()
 {
   delete osc_enable;
-  delete freq_label;
-  delete freq_spinbox;
+  delete fc;
 
-  delete hbox1;
   delete vbox;
 }
 
@@ -76,7 +67,7 @@ void OscCtl::set_frequency(uint32_t frequency)
   freq = frequency;
   std::string cmd = std::string("*") + this->cmd_id + std::to_string(freq);
   radio_interface->send_command_no_reply(cmd);
-  freq_spinbox->setValue(this->freq);
+  fc->setFrequency(this->freq);
 }
 
 void OscCtl::refresh_frequency()
@@ -84,7 +75,7 @@ void OscCtl::refresh_frequency()
   refresh_in_progress = true;
   std::string cmd = std::string("*") + this->cmd_id + "?";
   freq = std::stoi(radio_interface->send_command(cmd));
-  freq_spinbox->setValue(freq);
+  fc->setFrequency(freq);
   refresh_in_progress = false;
 }
 
@@ -93,7 +84,7 @@ void OscCtl::refresh()
   refresh_frequency();
 }
 
-void OscCtl::enable_state_changed(int state)
+void OscCtl::on_enable_stateChanged(int state)
 {
   if (refresh_in_progress)
     return;
@@ -102,10 +93,10 @@ void OscCtl::enable_state_changed(int state)
   radio_interface->send_command_no_reply(cmd);
 }
 
-void OscCtl::frequency_value_changed(int value)
+void OscCtl::on_newFrequency(qint64 freq)
 {
   if (refresh_in_progress)
     return;
 
-  set_frequency(value);
+  set_frequency(freq);
 }

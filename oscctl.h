@@ -23,7 +23,8 @@
 #include <QHBoxLayout>
 #include <QCheckBox>
 #include <QLabel>
-#include <QSpinBox>
+
+#include "freqctrl.h"
 
 #include "radiointerface.h"
 
@@ -54,20 +55,17 @@ protected:
     uint32_t freq;
 
     QVBoxLayout *vbox;
-    QHBoxLayout *hbox1;
 
 private:
     bool refresh_in_progress;
 
     QCheckBox *osc_enable;
 
-    // in hbox
-    QLabel *freq_label;
-    QSpinBox *freq_spinbox;
+    CFreqCtrl *fc;
 
 private slots:
-    void enable_state_changed(int state);
-    void frequency_value_changed(int value);
+    void on_enable_stateChanged(int state);
+    void on_newFrequency(qint64 freq);
 };
 
 #endif // OSC_CTL_H
