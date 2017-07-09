@@ -95,17 +95,17 @@ void OscCtl::refresh(void)
 
 void OscCtl::enable_state_changed(int state)
 {
-  if (! refresh_in_progress)
-    {
-      std::string cmd = std::string("*O") + this->cmd_id + (state ? "2" : "0");
-      radio_interface->send_command_no_reply(cmd);
-    }
+  if (refresh_in_progress)
+    return;
+  
+  std::string cmd = std::string("*O") + this->cmd_id + (state ? "2" : "0");
+  radio_interface->send_command_no_reply(cmd);
 }
 
 void OscCtl::frequency_value_changed(int value)
 {
-  if (! refresh_in_progress)
-    {
-      set_frequency(value);
-    }
+  if (refresh_in_progress)
+    return;
+
+  set_frequency(value);
 }
