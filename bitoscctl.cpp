@@ -56,18 +56,24 @@ BitOscCtl::~BitOscCtl()
 void BitOscCtl::set_lo_minus_1khz()
 {
   uint32_t lo = vfo_osc_ctl->get_frequency();
+  if (lo == 0)
+    return;
   set_frequency(lo - 1000);
 }
 
 void BitOscCtl::set_lo()
 {
   uint32_t lo = vfo_osc_ctl->get_frequency();
+  if (lo == 0)
+    return;
   set_frequency(lo);
 }
 
 void BitOscCtl::set_lo_plus_1khz()
 {
   uint32_t lo = vfo_osc_ctl->get_frequency();
+  if (lo == 0)
+    return;
   set_frequency(lo + 1000);
 }
 
